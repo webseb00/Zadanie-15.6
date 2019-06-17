@@ -22,7 +22,15 @@ class Stopwatch {
 	}
 
 	format(times) {
-		return `${pad0(times.minutes)}:${pad0(times.seconds)}:${pad0(Math.floor(times.miliseconds))}`;
+		return `${this.pad0(times.minutes)}:${this.pad0(times.seconds)}:${this.pad0(Math.floor(times.miliseconds))}`;
+	}
+
+	pad0(value) {
+		let result = value.toString();
+		if(result.length < 2) {
+			result = '0' + result;
+		}
+		return result;
 	}
 
 	start() {
@@ -70,39 +78,33 @@ class Stopwatch {
 		node.appendChild(content);
 		timeList.appendChild(node); 
 	}
+
+	removeList() {
+		let listChild = timeList.children.length;
+
+		for(let i=0;i<listChild;i++) {
+			timeList.removeChild(timeList.children[0]);
+		}
+	}
+
+	// START WATCH
+	startButton.addEventListener('click', () => this.start());
+	// STOP WATCH
+	stopButton.addEventListener('click', () => this.stop());
+	// RESET WATCH
+	resetButton.addEventListener('click', () => this.resetWatch());
+	// ADD TIME TO TIME LIST
+	addListButton.addEventListener('click', () => this.saveTime());
+	// RESET TIME LIST
+	resetList.addEventListener('click', () => this.removeList());
 }
 
 const stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
 
 let startButton = document.getElementById('start');
-startButton.addEventListener('click', () => stopwatch.start());
-
 let stopButton = document.getElementById('stop');
-stopButton.addEventListener('click', () => stopwatch.stop());
-
 let resetButton = document.getElementById('reset');
-resetButton.addEventListener('click', () => stopwatch.resetWatch());
-
 let addListButton = document.getElementById('addToList');
-addListButton.addEventListener('click', () => stopwatch.saveTime());
-
 let resetList = document.getElementById('resetList');
-resetList.addEventListener('click', () => removeList());
-
 const timeList = document.querySelector('.results');
 
-function pad0(value) {
-	let result = value.toString();
-	if(result.length < 2) {
-		result = '0' + result;
-	}
-	return result;
-}
-
-function removeList() {
-	let listChild = timeList.children.length;
-
-	for(let i=0;i<listChild;i++) {
-		timeList.removeChild(timeList.children[0]);
-	}
-}
