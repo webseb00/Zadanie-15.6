@@ -57,6 +57,7 @@ li {
     color: #f7f7f7;
     border-radius: 5px;
     transition: .4s;
+    white-space: nowrap;
 }
 
 .button--start {
