@@ -1,16 +1,27 @@
 {
   "name": "Zadanie-15.6",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Stoper stworzony na podstawie klasy ES6.",
+  "main": "script-compiled.js",
   "scripts": {
-    "start": "babel script.js --watch --out-file script-compiled.js"
+    "start": "npm run babel && server",
+    "babel": "babel script.js --watch --out-file script-compiled.js",
+    "server": "live-server --port=3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webseb00/Zadanie-15.6.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webseb00/Zadanie-15.6/issues"
+  },
+  "homepage": "https://github.com/webseb00/Zadanie-15.6#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-latest": "^6.24.1"
+    "babel-preset-latest": "^6.24.1",
+    "live-server": "^1.2.1"
   }
 }

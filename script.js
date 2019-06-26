@@ -4,6 +4,17 @@ class Stopwatch {
 		this.display = display;
 		this.reset();
 		this.print(this.times);
+		this.startButton = document.getElementById('start');
+		this.stopButton = document.getElementById('stop');
+		this.resetButton = document.getElementById('reset');
+		this.addListButton = document.getElementById('addToList');
+		this.resetList = document.getElementById('resetList');
+		this.timeList = document.querySelector('.results');
+		this.startButton.addEventListener('click', () => this.start());
+		this.stopButton.addEventListener('click', () => this.stop());
+		this.resetButton.addEventListener('click', () => this.resetWatch());
+		this.addListButton.addEventListener('click', () => this.saveTime());
+		this.resetList.addEventListener('click', () => this.removeList());
 	}
 
 	reset() {
@@ -76,35 +87,16 @@ class Stopwatch {
 		let node = document.createElement('li');
 		let content = document.createTextNode(timeItem);
 		node.appendChild(content);
-		timeList.appendChild(node); 
+		this.timeList.appendChild(node); 
 	}
 
 	removeList() {
-		let listChild = timeList.children.length;
+		let listChild = this.timeList.children.length;
 
 		for(let i=0;i<listChild;i++) {
-			timeList.removeChild(timeList.children[0]);
+			this.timeList.removeChild(this.timeList.children[0]);
 		}
 	}
-
-	// START WATCH
-	startButton.addEventListener('click', () => this.start());
-	// STOP WATCH
-	stopButton.addEventListener('click', () => this.stop());
-	// RESET WATCH
-	resetButton.addEventListener('click', () => this.resetWatch());
-	// ADD TIME TO TIME LIST
-	addListButton.addEventListener('click', () => this.saveTime());
-	// RESET TIME LIST
-	resetList.addEventListener('click', () => this.removeList());
 }
 
 const stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
-
-let startButton = document.getElementById('start');
-let stopButton = document.getElementById('stop');
-let resetButton = document.getElementById('reset');
-let addListButton = document.getElementById('addToList');
-let resetList = document.getElementById('resetList');
-const timeList = document.querySelector('.results');
-
